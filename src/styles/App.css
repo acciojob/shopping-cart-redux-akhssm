@@ -1,13 +1,12 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f6fa;
   margin: 0;
-  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f6fa;
 }
 
 .container {
   max-width: 1100px;
-  margin: 0 auto;
+  margin: auto;
   padding: 20px;
 }
 
@@ -16,124 +15,70 @@ h1 {
   margin-bottom: 30px;
 }
 
-h2 {
+section {
   margin-top: 40px;
-  margin-bottom: 20px;
 }
 
 .product-grid,
 .cart-grid,
 .wishlist-grid {
   display: flex;
-  flex-wrap: wrap;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
-.card {
+.custom-card {
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 15px;
   width: 220px;
-  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.card img {
+.custom-card img {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  border-radius: 8px;
 }
 
-.product-card h3,
-.cart-card h3,
-.wishlist-card h3 {
-  margin: 12px 0 6px;
-  font-size: 18px;
+.card-body {
+  padding: 12px;
+  text-align: center;
 }
 
-.desc {
-  font-size: 14px;
-  color: #555;
-  margin: 4px 0;
-}
-
-.price {
-  font-weight: bold;
-  margin: 8px 0;
-}
-
-.btn-row,
-.qty-control,
-.coupon-row {
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-.btn {
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  padding: 8px 12px;
-  font-size: 14px;
-}
-
-.btn-primary {
-  background: #1877f2;
-  color: white;
-}
-
-.btn-secondary {
-  background: #6c757d;
-  color: white;
-}
-
-.btn-danger {
-  background: #dc3545;
-  color: white;
-}
-
-.btn-small {
-  padding: 6px 10px;
-  font-size: 12px;
-}
-
-.qty-control button {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #e0e0e0;
-}
-
-.qty-control span {
-  margin: 0 8px;
-  font-weight: bold;
-}
-
-.summary {
-  margin-top: 20px;
+.card-body h4 {
+  margin: 10px 0 6px;
   font-size: 16px;
 }
 
-.total {
-  font-size: 18px;
+.card-body p {
+  margin: 4px 0;
+  font-size: 14px;
   font-weight: bold;
+}
+
+.btn {
+  display: block;
+  width: 100%;
   margin-top: 8px;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #1877f2;
+  color: white;
+  font-size: 14px;
 }
 
-.coupon-row input {
-  padding: 6px 8px;
+.btn:hover {
+  opacity: 0.9;
+}
+
+input {
+  padding: 6px;
+  margin-right: 6px;
+  border-radius: 4px;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  width: 140px;
-}
-
-.coupon-row button {
-  padding: 6px 10px;
 }
 
 @media (max-width: 768px) {
