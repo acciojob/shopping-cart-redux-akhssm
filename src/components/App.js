@@ -20,28 +20,32 @@ const PRODUCTS = [
     name: 'Blue Denim Shirt',
     desc: 'Shirt - Blue',
     price: 1799,
-    image: 'http://via.placeholder.com/200x240.png?text=Blue+Denim+Shirt',
+    image:
+      "https://cdn.pixabay.com/photo/2016/03/27/22/22/denim-shirt-1284417_1280.jpg",
   },
   {
     id: 2,
     name: 'Red Hoodie',
     desc: 'Hoodie - Red',
     price: 3599,
-    image: 'http://via.placeholder.com/200x240.png?text=Red+Hoodie',
+    image:
+      "https://cdn.pixabay.com/photo/2019/10/21/23/55/hoodie-4573426_1280.jpg",
   },
   {
     id: 3,
     name: 'Navy T-Shirt',
     desc: 'TShirt - Navy',
     price: 1599,
-    image: 'http://via.placeholder.com/200x240.png?text=Navy+TShirt',
+    image:
+      "https://cdn.pixabay.com/photo/2016/10/04/12/48/t-shirt-1715850_1280.png",
   },
   {
     id: 4,
     name: 'Black Chino Pants',
     desc: 'Chino Pants - Black',
     price: 6999,
-    image: 'http://via.placeholder.com/200x240.png?text=Black+Chino+Pants',
+    image:
+      "https://cdn.pixabay.com/photo/2016/11/19/17/17/trousers-1840889_1280.jpg",
   },
 ];
 
@@ -108,7 +112,7 @@ export default function App() {
           <p>No items in cart.</p>
         ) : (
           <div className="cart-grid">
-            {cartItems.map((item, index) => (
+            {cartItems.map((item) => (
               <div key={item.id} className="custom-card card cart-card">
                 <h3>{item.name}</h3>
                 <p className="price">Rs {item.price}</p>
@@ -142,8 +146,7 @@ export default function App() {
           <p>Subtotal: Rs {subtotal}</p>
           {coupon && (
             <p>
-              Coupon {coupon.code}: -Rs {discount} (
-              {coupon.discountPercent}%)
+              Coupon {coupon.code}: -Rs {discount} ({coupon.discountPercent}%)
             </p>
           )}
           <p className="total">Total: Rs {total}</p>

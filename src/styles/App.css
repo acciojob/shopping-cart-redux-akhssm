@@ -82,22 +82,22 @@ h2 {
   font-size: 14px;
 }
 
-.btn.primary {
+.btn-primary {
   background: #1877f2;
   color: white;
 }
 
-.btn.secondary {
+.btn-secondary {
   background: #6c757d;
   color: white;
 }
 
-.btn.danger {
+.btn-danger {
   background: #dc3545;
   color: white;
 }
 
-.btn.small {
+.btn-small {
   padding: 6px 10px;
   font-size: 12px;
 }
