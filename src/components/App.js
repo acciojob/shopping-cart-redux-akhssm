@@ -20,30 +20,28 @@ const PRODUCTS = [
     name: 'Blue Denim Shirt',
     desc: 'Shirt - Blue',
     price: 1799,
-    image:
-      'https://via.placeholder.com/200x240.png?text=Blue+Denim+Shirt',
+    image: 'http://via.placeholder.com/200x240.png?text=Blue+Denim+Shirt',
   },
   {
     id: 2,
     name: 'Red Hoodie',
     desc: 'Hoodie - Red',
     price: 3599,
-    image: 'https://via.placeholder.com/200x240.png?text=Red+Hoodie',
+    image: 'http://via.placeholder.com/200x240.png?text=Red+Hoodie',
   },
   {
     id: 3,
     name: 'Navy T-Shirt',
     desc: 'TShirt - Navy',
     price: 1599,
-    image: 'https://via.placeholder.com/200x240.png?text=Navy+TShirt',
+    image: 'http://via.placeholder.com/200x240.png?text=Navy+TShirt',
   },
   {
     id: 4,
     name: 'Black Chino Pants',
     desc: 'Chino Pants - Black',
     price: 6999,
-    image:
-      'https://via.placeholder.com/200x240.png?text=Black+Chino+Pants',
+    image: 'http://via.placeholder.com/200x240.png?text=Black+Chino+Pants',
   },
 ];
 
@@ -70,13 +68,17 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>Shopping Cart</h1>
+      <nav className="navbar navbar-expand-lg">
+        <div className="text-center">
+          <h1>Shopping Cart</h1>
+        </div>
+      </nav>
 
       <section>
         <h2>All Products</h2>
         <div className="product-grid">
           {PRODUCTS.map((p) => (
-            <div key={p.id} className="card product-card">
+            <div key={p.id} className="custom-card card">
               <img src={p.image} alt={p.name} />
               <h3>{p.name}</h3>
               <p className="desc">{p.desc}</p>
@@ -84,13 +86,13 @@ export default function App() {
               <div className="btn-row">
                 <button
                   onClick={() => dispatch(addToCart(p))}
-                  className="btn primary"
+                  className="btn btn-primary"
                 >
                   Add To Cart
                 </button>
                 <button
                   onClick={() => dispatch(addToWishlist(p))}
-                  className="btn secondary"
+                  className="btn btn-secondary"
                 >
                   Wishlist
                 </button>
@@ -106,26 +108,28 @@ export default function App() {
           <p>No items in cart.</p>
         ) : (
           <div className="cart-grid">
-            {cartItems.map((item) => (
-              <div key={item.id} className="card cart-card">
+            {cartItems.map((item, index) => (
+              <div key={item.id} className="custom-card card cart-card">
                 <h3>{item.name}</h3>
                 <p className="price">Rs {item.price}</p>
                 <div className="qty-control">
                   <button
                     onClick={() => dispatch(decreaseQty(item.id))}
+                    className="btn btn-secondary btn-small"
                   >
                     -
                   </button>
                   <span>{item.qty}</span>
                   <button
                     onClick={() => dispatch(increaseQty(item.id))}
+                    className="btn btn-secondary btn-small"
                   >
                     +
                   </button>
                 </div>
                 <button
                   onClick={() => dispatch(removeFromCart(item.id))}
-                  className="btn danger small"
+                  className="btn btn-danger btn-small"
                 >
                   Remove
                 </button>
@@ -152,13 +156,16 @@ export default function App() {
             value={couponInput}
             onChange={(e) => setCouponInput(e.target.value)}
           />
-          <button onClick={handleApplyCoupon} className="btn primary">
+          <button
+            onClick={handleApplyCoupon}
+            className="btn btn-primary btn-small"
+          >
             Apply
           </button>
           {coupon && (
             <button
               onClick={() => dispatch(clearCoupon())}
-              className="btn small"
+              className="btn btn-secondary btn-small"
             >
               Clear
             </button>
@@ -173,21 +180,19 @@ export default function App() {
         ) : (
           <div className="wishlist-grid">
             {wishlistItems.map((item) => (
-              <div key={item.id} className="card wishlist-card">
+              <div key={item.id} className="custom-card card wishlist-card">
                 <h3>{item.name}</h3>
                 <p className="price">Rs {item.price}</p>
                 <div className="btn-row">
                   <button
                     onClick={() => dispatch(addToCart(item))}
-                    className="btn primary small"
+                    className="btn btn-primary btn-small"
                   >
                     Add To Cart
                   </button>
                   <button
-                    onClick={() =>
-                      dispatch(removeFromWishlist(item.id))
-                    }
-                    className="btn danger small"
+                    onClick={() => dispatch(removeFromWishlist(item.id))}
+                    className="btn btn-danger btn-small"
                   >
                     Remove
                   </button>
@@ -198,5 +203,5 @@ export default function App() {
         )}
       </section>
     </div>
-);
+  );
 }
