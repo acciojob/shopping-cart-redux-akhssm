@@ -10,13 +10,29 @@ body {
   padding: 20px;
 }
 
+.navbar {
+  background: white;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .text-center {
+  width: 100%;
+}
+
 h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin: 0;
 }
 
 section {
   margin-top: 40px;
+}
+
+section h2 {
+  margin-bottom: 16px;
 }
 
 .product-grid,
@@ -65,13 +81,29 @@ section {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: #1877f2;
-  color: white;
   font-size: 14px;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #1877f2;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn-danger {
+  background-color: #dc3545;
 }
 
 .btn:hover {
   opacity: 0.9;
+}
+
+.cart-grid .btn {
+  width: 48%;
+  display: inline-block;
 }
 
 input {
@@ -87,5 +119,9 @@ input {
   .wishlist-grid {
     flex-direction: column;
     align-items: center;
+  }
+
+  .cart-grid .btn {
+    width: 100%;
   }
 }

@@ -14,24 +14,28 @@ const PRODUCTS = [
   {
     id: 1,
     name: "Blue Denim Shirt",
+    desc: "SHIRT - BLUE",
     price: 1799,
     image: "http://via.placeholder.com/200x240?text=Denim+Shirt",
   },
   {
     id: 2,
     name: "Red Hoodie",
+    desc: "HOODIE - RED",
     price: 3599,
     image: "http://via.placeholder.com/200x240?text=Red+Hoodie",
   },
   {
     id: 3,
     name: "Navy T-Shirt",
+    desc: "TSHIRT - NAVY",
     price: 1599,
     image: "http://via.placeholder.com/200x240?text=Navy+TShirt",
   },
   {
     id: 4,
     name: "Black Chino Pants",
+    desc: "CHINO PANTS - BLACK",
     price: 6999,
     image: "http://via.placeholder.com/200x240?text=Chino+Pants",
   },
@@ -53,26 +57,32 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>Shopping Cart</h1>
+      <nav className="navbar navbar-expand-lg">
+        <div className="text-center">
+          <h1>Shopping Cart</h1>
+        </div>
+      </nav>
 
       <section>
+        <h2>All Products</h2>
         <div className="product-grid">
           {PRODUCTS.map((p) => (
-            <div key={p.id} className="custom-card">
+            <div key={p.id} className="custom-card card">
               <img src={p.image} alt={p.name} />
               <div className="card-body">
                 <h4>{p.name}</h4>
+                <p>{p.desc}</p>
                 <p>Rs {p.price}</p>
 
                 <button
-                  className="btn"
+                  className="btn btn-primary"
                   onClick={() => dispatch(addToCart(p))}
                 >
-                  Add to Cart
+                  Add To Cart
                 </button>
 
                 <button
-                  className="btn"
+                  className="btn btn-secondary"
                   onClick={() => dispatch(addToWishlist(p))}
                 >
                   Wishlist
@@ -84,13 +94,13 @@ export default function App() {
       </section>
 
       <section>
+        <h2>Cart</h2>
         <div className="cart-grid">
           {cartItems.map((item) => (
-            <div key={item.id} className="custom-card">
+            <div key={item.id} className="custom-card card">
               <div className="card-body">
                 <h4>{item.name}</h4>
                 <p>Rs {item.price}</p>
-                <p>Qty: {item.qty}</p>
 
                 <button
                   className="btn"
@@ -107,7 +117,7 @@ export default function App() {
                 </button>
 
                 <button
-                  className="btn"
+                  className="btn btn-danger"
                   onClick={() => dispatch(removeFromCart(item.id))}
                 >
                   Remove
@@ -122,10 +132,10 @@ export default function App() {
         <input
           value={couponInput}
           onChange={(e) => setCouponInput(e.target.value)}
-          placeholder="Coupon"
+          placeholder="Enter coupon"
         />
         <button
-          className="btn"
+          className="btn btn-primary"
           onClick={() =>
             dispatch(applyCoupon({ code: couponInput.toUpperCase() }))
           }
@@ -135,26 +145,26 @@ export default function App() {
         <button className="btn" onClick={() => dispatch(clearCoupon())}>
           Clear
         </button>
-
         <p>Total: Rs {total}</p>
       </section>
 
       <section>
+        <h2>Wishlist</h2>
         <div className="wishlist-grid">
           {wishlistItems.map((item) => (
-            <div key={item.id} className="custom-card">
+            <div key={item.id} className="custom-card card">
               <div className="card-body">
                 <h4>{item.name}</h4>
 
                 <button
-                  className="btn"
+                  className="btn btn-primary"
                   onClick={() => dispatch(addToCart(item))}
                 >
-                  Add to Cart
+                  Add To Cart
                 </button>
 
                 <button
-                  className="btn"
+                  className="btn btn-danger"
                   onClick={() => dispatch(removeFromWishlist(item.id))}
                 >
                   Remove
