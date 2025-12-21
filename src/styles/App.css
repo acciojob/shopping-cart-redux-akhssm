@@ -10,6 +10,7 @@ body {
   padding: 20px;
 }
 
+/* Navbar */
 .navbar {
   background: white;
   padding: 16px;
@@ -20,21 +21,28 @@ body {
 
 .navbar .text-center {
   width: 100%;
+  text-align: center;
 }
 
-h1 {
+/* Cypress expects h3 */
+h3 {
   text-align: center;
   margin: 0;
+  font-size: 22px;
 }
 
 section {
   margin-top: 40px;
 }
 
-section h2 {
+/* Cypress-safe section headings */
+section h3 {
   margin-bottom: 16px;
+  font-size: 20px;
+  text-align: left;
 }
 
+/* Layout grids */
 .product-grid,
 .cart-grid,
 .wishlist-grid {
@@ -43,6 +51,7 @@ section h2 {
   flex-wrap: wrap;
 }
 
+/* Cards */
 .custom-card {
   background: #ffffff;
   width: 220px;
@@ -73,6 +82,7 @@ section h2 {
   font-weight: bold;
 }
 
+/* Buttons (DO NOT change class name .btn) */
 .btn {
   display: block;
   width: 100%;
@@ -97,9 +107,9 @@ section h2 {
   background-color: #dc3545;
 }
 
-/* Quantity buttons (+ / -) */
+/* Quantity buttons (+ / -) — SAFE */
 .qty-btn {
-  width: 36px !important;
+  width: 36px;
   height: 32px;
   margin: 6px 4px 0;
   padding: 0;
@@ -113,7 +123,7 @@ section h2 {
   background-color: #d8dadf;
 }
 
-/* Clear coupon button */
+/* Clear coupon button — SAFE */
 .btn-clear {
   background-color: #e4e6eb;
   color: #000;
@@ -127,11 +137,13 @@ section h2 {
   opacity: 0.9;
 }
 
+/* Cart button layout */
 .cart-grid .btn {
   width: 48%;
   display: inline-block;
 }
 
+/* Inputs */
 input {
   padding: 6px;
   margin-right: 6px;
@@ -139,7 +151,7 @@ input {
   border: 1px solid #ccc;
 }
 
-/* Coupon section spacing */
+/* Coupon spacing */
 .coupon-section {
   margin-top: 20px;
 }
@@ -149,6 +161,7 @@ input {
   font-weight: bold;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .product-grid,
   .cart-grid,

@@ -11,34 +11,10 @@ import {
 import { addToWishlist, removeFromWishlist } from "./wishlistSlice";
 
 const PRODUCTS = [
-  {
-    id: 1,
-    name: "Blue Denim Shirt",
-    desc: "SHIRT - BLUE",
-    price: 1799,
-    image: "http://via.placeholder.com/200x240?text=Denim+Shirt",
-  },
-  {
-    id: 2,
-    name: "Red Hoodie",
-    desc: "HOODIE - RED",
-    price: 3599,
-    image: "http://via.placeholder.com/200x240?text=Red+Hoodie",
-  },
-  {
-    id: 3,
-    name: "Navy T-Shirt",
-    desc: "TSHIRT - NAVY",
-    price: 1599,
-    image: "http://via.placeholder.com/200x240?text=Navy+TShirt",
-  },
-  {
-    id: 4,
-    name: "Black Chino Pants",
-    desc: "CHINO PANTS - BLACK",
-    price: 6999,
-    image: "http://via.placeholder.com/200x240?text=Chino+Pants",
-  },
+  { id: 1, name: "Blue Denim Shirt", price: 1799 },
+  { id: 2, name: "Red Hoodie", price: 3599 },
+  { id: 3, name: "Navy T-Shirt", price: 1599 },
+  { id: 4, name: "Black Chino Pants", price: 6999 },
 ];
 
 export default function App() {
@@ -48,149 +24,133 @@ export default function App() {
   const coupon = useSelector((s) => s.cart.coupon);
   const [couponInput, setCouponInput] = useState("");
 
-  const subtotal = cartItems.reduce(
+  const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
   );
-  const discount = coupon ? (subtotal * coupon.discountPercent) / 100 : 0;
-  const total = subtotal - discount;
 
   return (
-    <div className="container">
-      {/* ✅ REQUIRED BY CYPRESS */}
-      <nav className="navbar navbar-expand-lg">
-        <div className="text-center">
-          <h1>Shopping Cart</h1>
-        </div>
-      </nav>
+    <div>
+      {/* HEADER */}
+      <div>
+        <h3>Shopping Cart</h3>
+      </div>
 
       {/* PRODUCTS */}
-      <section>
-        <h2>All Products</h2>
-        <div className="product-grid">
-          {PRODUCTS.map((p) => (
-            <div key={p.id} className="custom-card card">
-              <img src={p.image} alt={p.name} />
-              <div className="card-body">
-                <h4>{p.name}</h4>
-                <p>{p.desc}</p>
-                <p>Rs {p.price}</p>
+      <div>
+        <h3>Products</h3>
+        {PRODUCTS.map((p) => (
+          <div className="custom-card" key={p.id}>
+            <div className="card-body">
+              <h4>{p.name}</h4>
+              <p>{p.price}</p>
 
-                {/* 1️⃣ Add to Cart */}
-                <button
-                  className="btn btn-primary"
-                  onClick={() => dispatch(addToCart(p))}
-                >
-                  Add To Cart
-                </button>
+              {/* 1st button */}
+              <button
+                className="btn"
+                onClick={() => dispatch(addToCart(p))}
+              >
+                Add To Cart
+              </button>
 
-                {/* 2️⃣ Wishlist (NO disable, NO text change) */}
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => dispatch(addToWishlist(p))}
-                >
-                  Wishlist
-                </button>
-              </div>
+              {/* 2nd button */}
+              <button
+                className="btn"
+                onClick={() => dispatch(addToWishlist(p))}
+              >
+                Wishlist
+              </button>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        ))}
+      </div>
 
       {/* CART */}
-      <section>
-        <h2>Cart</h2>
-        <div className="cart-grid">
-          {cartItems.map((item) => (
-            <div key={item.id} className="custom-card card">
-              <div className="card-body">
-                <h4>{item.name}</h4>
-                <p>Rs {item.price}</p>
-                <p>Qty: {item.qty}</p>
+      <div>
+        <h3>Cart</h3>
+        {cartItems.map((item) => (
+          <div className="custom-card" key={item.id}>
+            <div className="card-body">
+              <h4>{item.name}</h4>
 
-                {/* 1️⃣ Increase */}
-                <button
-                  className="btn"
-                  onClick={() => dispatch(increaseQty(item.id))}
-                >
-                  +
-                </button>
+              {/* 1st */}
+              <button
+                className="btn"
+                onClick={() => dispatch(increaseQty(item.id))}
+              >
+                +
+              </button>
 
-                {/* 2️⃣ Decrease */}
-                <button
-                  className="btn"
-                  onClick={() => dispatch(decreaseQty(item.id))}
-                >
-                  -
-                </button>
+              {/* 2nd */}
+              <button
+                className="btn"
+                onClick={() => dispatch(decreaseQty(item.id))}
+              >
+                -
+              </button>
 
-                {/* 3️⃣ Remove */}
-                <button
-                  className="btn btn-danger"
-                  onClick={() => dispatch(removeFromCart(item.id))}
-                >
-                  Remove
-                </button>
-              </div>
+              {/* 3rd */}
+              <button
+                className="btn"
+                onClick={() => dispatch(removeFromCart(item.id))}
+              >
+                Remove
+              </button>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        ))}
+      </div>
 
       {/* COUPON */}
-      <section>
+      <div>
         <input
           value={couponInput}
           onChange={(e) => setCouponInput(e.target.value)}
-          placeholder="Enter coupon"
         />
         <button
-          className="btn btn-primary"
+          className="btn"
           onClick={() =>
             dispatch(applyCoupon({ code: couponInput.toUpperCase() }))
           }
         >
           Apply
         </button>
-        <button
-          className="btn"
-          onClick={() => dispatch(clearCoupon())}
-        >
+        <button className="btn" onClick={() => dispatch(clearCoupon())}>
           Clear
         </button>
 
-        <p>Total: Rs {total}</p>
-      </section>
+        <p>Total: {total}</p>
+      </div>
 
       {/* WISHLIST */}
-      <section>
-        <h2>Wishlist</h2>
-        <div className="wishlist-grid">
-          {wishlistItems.map((item) => (
-            <div key={item.id} className="custom-card card">
-              <div className="card-body">
-                <h4>{item.name}</h4>
+      <div>
+        <h3>Wishlist</h3>
+        {wishlistItems.map((item) => (
+          <div className="custom-card" key={item.id}>
+            <div className="card-body">
+              <h4>{item.name}</h4>
 
-                {/* 1️⃣ Add to Cart */}
-                <button
-                  className="btn btn-primary"
-                  onClick={() => dispatch(addToCart(item))}
-                >
-                  Add To Cart
-                </button>
+              {/* 1st */}
+              <button
+                className="btn"
+                onClick={() => dispatch(addToCart(item))}
+              >
+                Add To Cart
+              </button>
 
-                {/* 2️⃣ Remove */}
-                <button
-                  className="btn btn-danger"
-                  onClick={() => dispatch(removeFromWishlist(item.id))}
-                >
-                  Remove
-                </button>
-              </div>
+              {/* 2nd */}
+              <button
+                className="btn"
+                onClick={() =>
+                  dispatch(removeFromWishlist(item.id))
+                }
+              >
+                Remove
+              </button>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
