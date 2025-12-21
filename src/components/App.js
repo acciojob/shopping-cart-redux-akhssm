@@ -21,7 +21,6 @@ export default function App() {
   const dispatch = useDispatch();
   const cartItems = useSelector((s) => s.cart.items);
   const wishlistItems = useSelector((s) => s.wishlist.items);
-  const coupon = useSelector((s) => s.cart.coupon);
   const [couponInput, setCouponInput] = useState("");
 
   const total = cartItems.reduce(
@@ -30,22 +29,22 @@ export default function App() {
   );
 
   return (
-    <div>
-      {/* HEADER */}
-      <div>
-        <h3>Shopping Cart</h3>
-      </div>
+    <>
+      <nav className="navbar-expand-lg">
+        <div className="text-center">
+          <h3>Shopping Cart</h3>
+        </div>
+      </nav>
 
-      {/* PRODUCTS */}
-      <div>
+      <section>
         <h3>Products</h3>
+
         {PRODUCTS.map((p) => (
           <div className="custom-card" key={p.id}>
             <div className="card-body">
-              <h4>{p.name}</h4>
+              <p>{p.name}</p>
               <p>{p.price}</p>
 
-              {/* 1st button */}
               <button
                 className="btn"
                 onClick={() => dispatch(addToCart(p))}
@@ -53,7 +52,6 @@ export default function App() {
                 Add To Cart
               </button>
 
-              {/* 2nd button */}
               <button
                 className="btn"
                 onClick={() => dispatch(addToWishlist(p))}
@@ -63,17 +61,17 @@ export default function App() {
             </div>
           </div>
         ))}
-      </div>
+      </section>
 
-      {/* CART */}
-      <div>
+      <section>
         <h3>Cart</h3>
+
         {cartItems.map((item) => (
           <div className="custom-card" key={item.id}>
             <div className="card-body">
-              <h4>{item.name}</h4>
+              <p>{item.name}</p>
+              <p>Qty: {item.qty}</p>
 
-              {/* 1st */}
               <button
                 className="btn"
                 onClick={() => dispatch(increaseQty(item.id))}
@@ -81,7 +79,6 @@ export default function App() {
                 +
               </button>
 
-              {/* 2nd */}
               <button
                 className="btn"
                 onClick={() => dispatch(decreaseQty(item.id))}
@@ -89,7 +86,6 @@ export default function App() {
                 -
               </button>
 
-              {/* 3rd */}
               <button
                 className="btn"
                 onClick={() => dispatch(removeFromCart(item.id))}
@@ -99,38 +95,16 @@ export default function App() {
             </div>
           </div>
         ))}
-      </div>
+      </section>
 
-      {/* COUPON */}
-      <div>
-        <input
-          value={couponInput}
-          onChange={(e) => setCouponInput(e.target.value)}
-        />
-        <button
-          className="btn"
-          onClick={() =>
-            dispatch(applyCoupon({ code: couponInput.toUpperCase() }))
-          }
-        >
-          Apply
-        </button>
-        <button className="btn" onClick={() => dispatch(clearCoupon())}>
-          Clear
-        </button>
-
-        <p>Total: {total}</p>
-      </div>
-
-      {/* WISHLIST */}
-      <div>
+      <section>
         <h3>Wishlist</h3>
+
         {wishlistItems.map((item) => (
           <div className="custom-card" key={item.id}>
             <div className="card-body">
-              <h4>{item.name}</h4>
+              <p>{item.name}</p>
 
-              {/* 1st */}
               <button
                 className="btn"
                 onClick={() => dispatch(addToCart(item))}
@@ -138,7 +112,6 @@ export default function App() {
                 Add To Cart
               </button>
 
-              {/* 2nd */}
               <button
                 className="btn"
                 onClick={() =>
@@ -150,7 +123,32 @@ export default function App() {
             </div>
           </div>
         ))}
-      </div>
-    </div>
+      </section>
+
+      <section>
+        <input
+          value={couponInput}
+          onChange={(e) => setCouponInput(e.target.value)}
+        />
+
+        <button
+          className="btn"
+          onClick={() =>
+            dispatch(applyCoupon({ code: couponInput.toUpperCase() }))
+          }
+        >
+          Apply
+        </button>
+
+        <button
+          className="btn"
+          onClick={() => dispatch(clearCoupon())}
+        >
+          Clear
+        </button>
+
+        <p>Total: {total}</p>
+      </section>
+    </>
   );
 }
