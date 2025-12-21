@@ -97,6 +97,32 @@ section h2 {
   background-color: #dc3545;
 }
 
+/* Quantity buttons (+ / -) */
+.qty-btn {
+  width: 36px !important;
+  height: 32px;
+  margin: 6px 4px 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #e4e6eb;
+  color: #000;
+}
+
+.qty-btn:hover {
+  background-color: #d8dadf;
+}
+
+/* Clear coupon button */
+.btn-clear {
+  background-color: #e4e6eb;
+  color: #000;
+}
+
+.btn-clear:hover {
+  background-color: #d8dadf;
+}
+
 .btn:hover {
   opacity: 0.9;
 }
@@ -111,6 +137,16 @@ input {
   margin-right: 6px;
   border-radius: 4px;
   border: 1px solid #ccc;
+}
+
+/* Coupon section spacing */
+.coupon-section {
+  margin-top: 20px;
+}
+
+.coupon-section p {
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
