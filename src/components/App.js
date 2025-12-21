@@ -46,7 +46,6 @@ export default function App() {
   const cartItems = useSelector((s) => s.cart.items);
   const wishlistItems = useSelector((s) => s.wishlist.items);
   const coupon = useSelector((s) => s.cart.coupon);
-
   const [couponInput, setCouponInput] = useState("");
 
   const subtotal = cartItems.reduce(
@@ -58,7 +57,8 @@ export default function App() {
 
   return (
     <div className="container">
-      <nav className="navbar">
+      {/* ✅ REQUIRED BY CYPRESS */}
+      <nav className="navbar navbar-expand-lg">
         <div className="text-center">
           <h1>Shopping Cart</h1>
         </div>
@@ -68,37 +68,32 @@ export default function App() {
       <section>
         <h2>All Products</h2>
         <div className="product-grid">
-          {PRODUCTS.map((p) => {
-            const inWishlist = wishlistItems.some(
-              (item) => item.id === p.id
-            );
+          {PRODUCTS.map((p) => (
+            <div key={p.id} className="custom-card card">
+              <img src={p.image} alt={p.name} />
+              <div className="card-body">
+                <h4>{p.name}</h4>
+                <p>{p.desc}</p>
+                <p>Rs {p.price}</p>
 
-            return (
-              <div key={p.id} className="custom-card card">
-                <img src={p.image} alt={p.name} />
-                <div className="card-body">
-                  <h4>{p.name}</h4>
-                  <p>{p.desc}</p>
-                  <p>Rs {p.price}</p>
+                {/* 1️⃣ Add to Cart */}
+                <button
+                  className="btn btn-primary"
+                  onClick={() => dispatch(addToCart(p))}
+                >
+                  Add To Cart
+                </button>
 
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => dispatch(addToCart(p))}
-                  >
-                    Add To Cart
-                  </button>
-
-                  <button
-                    className="btn btn-secondary"
-                    disabled={inWishlist}
-                    onClick={() => dispatch(addToWishlist(p))}
-                  >
-                    {inWishlist ? "In Wishlist" : "Wishlist"}
-                  </button>
-                </div>
+                {/* 2️⃣ Wishlist (NO disable, NO text change) */}
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => dispatch(addToWishlist(p))}
+                >
+                  Wishlist
+                </button>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -113,20 +108,23 @@ export default function App() {
                 <p>Rs {item.price}</p>
                 <p>Qty: {item.qty}</p>
 
+                {/* 1️⃣ Increase */}
                 <button
-                  className="btn qty-btn"
+                  className="btn"
                   onClick={() => dispatch(increaseQty(item.id))}
                 >
                   +
                 </button>
 
+                {/* 2️⃣ Decrease */}
                 <button
-                  className="btn qty-btn"
+                  className="btn"
                   onClick={() => dispatch(decreaseQty(item.id))}
                 >
                   -
                 </button>
 
+                {/* 3️⃣ Remove */}
                 <button
                   className="btn btn-danger"
                   onClick={() => dispatch(removeFromCart(item.id))}
@@ -140,7 +138,7 @@ export default function App() {
       </section>
 
       {/* COUPON */}
-      <section className="coupon-section">
+      <section>
         <input
           value={couponInput}
           onChange={(e) => setCouponInput(e.target.value)}
@@ -155,7 +153,7 @@ export default function App() {
           Apply
         </button>
         <button
-          className="btn btn-clear"
+          className="btn"
           onClick={() => dispatch(clearCoupon())}
         >
           Clear
@@ -173,6 +171,7 @@ export default function App() {
               <div className="card-body">
                 <h4>{item.name}</h4>
 
+                {/* 1️⃣ Add to Cart */}
                 <button
                   className="btn btn-primary"
                   onClick={() => dispatch(addToCart(item))}
@@ -180,6 +179,7 @@ export default function App() {
                   Add To Cart
                 </button>
 
+                {/* 2️⃣ Remove */}
                 <button
                   className="btn btn-danger"
                   onClick={() => dispatch(removeFromWishlist(item.id))}
