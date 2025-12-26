@@ -25,16 +25,10 @@ export default function App() {
 
   const [couponInput, setCouponInput] = useState("");
 
-  const subtotal = cartItems.reduce(
+  const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
   );
-
-  const discount = coupon
-    ? Math.floor((subtotal * coupon.discountPercent) / 100)
-    : 0;
-
-  const total = subtotal - discount;
 
   return (
     <>
@@ -49,7 +43,7 @@ export default function App() {
         {PRODUCTS.map((p) => (
           <div className="custom-card card" key={p.id}>
             <div className="card-body">
-              <p>{p.name}</p>
+              <h4>{p.name}</h4>
               <p>{p.price}</p>
 
               <button
@@ -75,15 +69,8 @@ export default function App() {
         {cartItems.map((item) => (
           <div className="custom-card card" key={item.id}>
             <div className="card-body">
-              <p>{item.name}</p>
+              <h4>{item.name}</h4>
               <p>{item.qty}</p>
-
-              <button
-                className="btn btn-success"
-                onClick={() => dispatch(increaseQty(item.id))}
-              >
-                +
-              </button>
 
               <button
                 className="btn btn-warning"
@@ -93,33 +80,15 @@ export default function App() {
               </button>
 
               <button
+                className="btn btn-success"
+                onClick={() => dispatch(increaseQty(item.id))}
+              >
+                +
+              </button>
+
+              <button
                 className="btn btn-danger"
                 onClick={() => dispatch(removeFromCart(item.id))}
-              >
-                Remove
-              </button>
-            </div>
-          </div>
-        ))}
-      </section>
-
-      <section>
-        <h3>Wishlist</h3>
-        {wishlistItems.map((item) => (
-          <div className="custom-card card" key={item.id}>
-            <div className="card-body">
-              <p>{item.name}</p>
-
-              <button
-                className="btn btn-primary"
-                onClick={() => dispatch(addToCart(item))}
-              >
-                Add To Cart
-              </button>
-
-              <button
-                className="btn btn-danger"
-                onClick={() => dispatch(removeFromWishlist(item.id))}
               >
                 Remove
               </button>
@@ -151,6 +120,31 @@ export default function App() {
         </button>
 
         <p>Total: {total}</p>
+      </section>
+
+      <section>
+        <h3>Wishlist</h3>
+        {wishlistItems.map((item) => (
+          <div className="custom-card card" key={item.id}>
+            <div className="card-body">
+              <h4>{item.name}</h4>
+
+              <button
+                className="btn btn-primary"
+                onClick={() => dispatch(addToCart(item))}
+              >
+                Add To Cart
+              </button>
+
+              <button
+                className="btn btn-danger"
+                onClick={() => dispatch(removeFromWishlist(item.id))}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        ))}
       </section>
     </>
   );
