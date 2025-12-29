@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart, addToWishlist } from "../redux/actions";
 
-const sampleProducts = [
+const products = [
   { id: 1, name: "Laptop", price: 40000 },
   { id: 2, name: "Phone", price: 20000 },
   { id: 3, name: "Headphones", price: 3000 },
@@ -13,13 +13,25 @@ function ProductList() {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <h2>Products</h2>
-      {sampleProducts.map((p) => (
-        <div key={p.id} style={{ marginBottom: 10 }}>
-          {p.name} – ₹{p.price}
-          <button onClick={() => dispatch(addToCart(p))}>Add to Cart</button>
-          <button onClick={() => dispatch(addToWishlist(p))}>Wishlist</button>
+    <div className="product-grid">
+      {products.map((p) => (
+        <div className="custom-card card" key={p.id}>
+          <div className="card-body">
+            <p>{p.name}</p>
+            <p>₹{p.price}</p>
+            <button
+              className="btn btn-primary"
+              onClick={() => dispatch(addToCart(p))}
+            >
+              Add to Cart
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => dispatch(addToWishlist(p))}
+            >
+              Wishlist
+            </button>
+          </div>
         </div>
       ))}
     </div>

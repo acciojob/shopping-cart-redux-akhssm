@@ -11,34 +11,51 @@ import {
 function Cart() {
   const { cart, discount } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [couponCode, setCouponCode] = useState("");
-
-  const total = cart.reduce((acc, p) => acc + p.price * p.qty, 0);
-  const discountAmount = (total * discount) / 100;
-  const finalTotal = total - discountAmount;
+  const [coupon, setCoupon] = useState("");
 
   return (
-    <div>
-      <h2>Shopping Cart</h2>
-      {cart.length === 0 && <p>Cart is empty</p>}
+    <div className="cart-grid">
       {cart.map((p) => (
-        <div key={p.id}>
-          {p.name} – ₹{p.price} x {p.qty}
-          <button onClick={() => dispatch(increaseQty(p.id))}>+</button>
-          <button onClick={() => dispatch(decreaseQty(p.id))}>-</button>
-          <button onClick={() => dispatch(removeFromCart(p.id))}>Remove</button>
+        <div className="custom-card card" key={p.id}>
+          <div className="card-body">
+            <p>{p.name}</p>
+            <p>₹{p.price}</p>
+            <p>Qty: {p.qty}</p>
+
+            <button
+              className="btn btn-success"
+              onClick={() => dispatch(increaseQty(p.id))}
+            >
+              +
+            </button>
+            <button
+              className="btn btn-warning"
+              onClick={() => dispatch(decreaseQty(p.id))}
+            >
+              -
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={() => dispatch(removeFromCart(p.id))}
+            >
+              Remove
+            </button>
+          </div>
         </div>
       ))}
-      <p>Total: ₹{total}</p>
-      {discount > 0 && <p>Discount: ₹{discountAmount}</p>}
-      <p>Final Total: ₹{finalTotal}</p>
-      <div>
+
+      <div className="coupon-section">
         <input
           placeholder="Enter coupon"
-          value={couponCode}
-          onChange={(e) => setCouponCode(e.target.value)}
+          value={coupon}
+          onChange={(e) => setCoupon(e.target.value)}
         />
-        <button onClick={() => dispatch(applyCoupon(couponCode))}>Apply</button>
+        <button
+          className="btn btn-primary"
+          onClick={() => dispatch(applyCoupon(coupon))}
+        >
+          Apply
+        </button>
       </div>
     </div>
   );
