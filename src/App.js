@@ -1,3 +1,9 @@
+import React from "react";
+import ProductList from "./components/ProductList";
+import Cart from "./components/Cart";
+import Wishlist from "./components/Wishlist";
+import "./styles/App.css";
+
 function App() {
   return (
     <div className="container">
@@ -24,3 +30,5 @@ function App() {
     </div>
   );
 }
+
+export default App;
