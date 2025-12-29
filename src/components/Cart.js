@@ -22,22 +22,27 @@ function Cart() {
             <p>₹{p.price}</p>
             <p>Qty: {p.qty}</p>
 
+            {/* BUTTON ORDER IS CRITICAL */}
+
+            {/* 1️⃣ Increase */}
             <button
-              className="btn"
+              className="btn btn-increase"
               onClick={() => dispatch(increaseQty(p.id))}
             >
               +
             </button>
 
+            {/* 2️⃣ Decrease */}
             <button
-              className="btn"
+              className="btn btn-decrease"
               onClick={() => dispatch(decreaseQty(p.id))}
             >
               -
             </button>
 
+            {/* 3️⃣ Remove */}
             <button
-              className="btn"
+              className="btn btn-remove"
               onClick={() => dispatch(removeFromCart(p.id))}
             >
               Remove
@@ -46,18 +51,21 @@ function Cart() {
         </div>
       ))}
 
-      <input
-        value={coupon}
-        onChange={(e) => setCoupon(e.target.value)}
-        placeholder="Enter coupon"
-      />
+      {/* Coupon Section */}
+      <div className="coupon-section">
+        <input
+          value={coupon}
+          onChange={(e) => setCoupon(e.target.value)}
+          placeholder="Enter coupon"
+        />
 
-      <button
-        className="btn"
-        onClick={() => dispatch(applyCoupon(coupon))}
-      >
-        Apply
-      </button>
+        <button
+          className="btn btn-success"
+          onClick={() => dispatch(applyCoupon(coupon))}
+        >
+          Apply
+        </button>
+      </div>
     </div>
   );
 }

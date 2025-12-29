@@ -1,7 +1,7 @@
 // src/components/Wishlist.jsx
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeFromWishlist } from "../redux/actions";
+import { removeFromWishlist } from "../redux/actions";
 
 function Wishlist() {
   const wishlist = useSelector((state) => state.wishlist);
@@ -15,8 +15,9 @@ function Wishlist() {
             <h4>{p.name}</h4>
             <p>₹{p.price}</p>
 
+            {/* ONLY ONE BUTTON */}
             <button
-              className="btn"
+              className="btn btn-remove-wishlist"
               onClick={() => dispatch(removeFromWishlist(p.id))}
             >
               Remove
