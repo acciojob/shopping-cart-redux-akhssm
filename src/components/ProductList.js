@@ -17,7 +17,7 @@ function ProductList() {
       {products.map((p) => (
         <div className="custom-card card" key={p.id}>
           <div className="card-body">
-            <p>{p.name}</p>
+            <h4>{p.name}</h4>
             <p>₹{p.price}</p>
 
             <button

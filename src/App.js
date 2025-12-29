@@ -6,12 +6,12 @@ import "./styles/App.css";
 
 function App() {
   return (
-    <div className="container">
-      <nav className="navbar-expand-lg">
+    <>
+      <div className="navbar-expand-lg">
         <div className="text-center">
           <h3>Shopping Cart</h3>
         </div>
-      </nav>
+      </div>
 
       <section>
         <h3>Products</h3>
@@ -27,7 +27,7 @@ function App() {
         <h3>Wishlist</h3>
         <Wishlist />
       </section>
-    </div>
+    </>
   );
 }
 

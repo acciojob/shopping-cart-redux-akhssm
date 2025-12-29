@@ -12,18 +12,11 @@ function Wishlist() {
       {wishlist.map((p) => (
         <div className="custom-card card" key={p.id}>
           <div className="card-body">
-            <p>{p.name}</p>
+            <h4>{p.name}</h4>
             <p>₹{p.price}</p>
 
             <button
-              className="btn btn-primary"
-              onClick={() => dispatch(addToCart(p))}
-            >
-              Add to Cart
-            </button>
-
-            <button
-              className="btn btn-danger"
+              className="btn"
               onClick={() => dispatch(removeFromWishlist(p.id))}
             >
               Remove
@@ -36,4 +29,3 @@ function Wishlist() {
 }
 
 export default Wishlist;
-

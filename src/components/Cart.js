@@ -9,7 +9,7 @@ import {
 } from "../redux/actions";
 
 function Cart() {
-  const { cart } = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [coupon, setCoupon] = useState("");
 
@@ -18,26 +18,26 @@ function Cart() {
       {cart.map((p) => (
         <div className="custom-card card" key={p.id}>
           <div className="card-body">
-            <p>{p.name}</p>
+            <h4>{p.name}</h4>
             <p>₹{p.price}</p>
             <p>Qty: {p.qty}</p>
 
             <button
-              className="btn btn-success"
+              className="btn"
               onClick={() => dispatch(increaseQty(p.id))}
             >
               +
             </button>
 
             <button
-              className="btn btn-warning"
+              className="btn"
               onClick={() => dispatch(decreaseQty(p.id))}
             >
               -
             </button>
 
             <button
-              className="btn btn-danger"
+              className="btn"
               onClick={() => dispatch(removeFromCart(p.id))}
             >
               Remove
@@ -46,22 +46,20 @@ function Cart() {
         </div>
       ))}
 
-      <div className="coupon-section">
-        <input
-          value={coupon}
-          onChange={(e) => setCoupon(e.target.value)}
-          placeholder="Enter coupon"
-        />
-        <button
-          className="btn btn-primary"
-          onClick={() => dispatch(applyCoupon(coupon))}
-        >
-          Apply
-        </button>
-      </div>
+      <input
+        value={coupon}
+        onChange={(e) => setCoupon(e.target.value)}
+        placeholder="Enter coupon"
+      />
+
+      <button
+        className="btn"
+        onClick={() => dispatch(applyCoupon(coupon))}
+      >
+        Apply
+      </button>
     </div>
   );
 }
 
 export default Cart;
-
