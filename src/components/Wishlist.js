@@ -21,6 +21,7 @@ function Wishlist() {
             >
               Add to Cart
             </button>
+
             <button
               className="btn btn-danger"
               onClick={() => dispatch(removeFromWishlist(p.id))}
@@ -35,3 +36,4 @@ function Wishlist() {
 }
 
 export default Wishlist;
+

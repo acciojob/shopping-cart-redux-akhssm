@@ -9,7 +9,7 @@ import {
 } from "../redux/actions";
 
 function Cart() {
-  const { cart, discount } = useSelector((state) => state);
+  const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [coupon, setCoupon] = useState("");
 
@@ -28,12 +28,14 @@ function Cart() {
             >
               +
             </button>
+
             <button
               className="btn btn-warning"
               onClick={() => dispatch(decreaseQty(p.id))}
             >
               -
             </button>
+
             <button
               className="btn btn-danger"
               onClick={() => dispatch(removeFromCart(p.id))}
@@ -46,9 +48,9 @@ function Cart() {
 
       <div className="coupon-section">
         <input
-          placeholder="Enter coupon"
           value={coupon}
           onChange={(e) => setCoupon(e.target.value)}
+          placeholder="Enter coupon"
         />
         <button
           className="btn btn-primary"
@@ -62,3 +64,4 @@ function Cart() {
 }
 
 export default Cart;
+

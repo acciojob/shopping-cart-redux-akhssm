@@ -19,12 +19,14 @@ function ProductList() {
           <div className="card-body">
             <p>{p.name}</p>
             <p>₹{p.price}</p>
+
             <button
               className="btn btn-primary"
               onClick={() => dispatch(addToCart(p))}
             >
               Add to Cart
             </button>
+
             <button
               className="btn btn-secondary"
               onClick={() => dispatch(addToWishlist(p))}
