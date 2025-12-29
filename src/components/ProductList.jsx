@@ -20,17 +20,17 @@ function ProductList() {
             <h4>{p.name}</h4>
             <p>₹{p.price}</p>
 
-            {/* FIRST BUTTON → ADD TO CART */}
+            {/* MUST be btn-primary */}
             <button
-              className="btn btn-add-cart"
+              className="btn btn-primary"
               onClick={() => dispatch(addToCart(p))}
             >
               Add to Cart
             </button>
 
-            {/* SECOND BUTTON → WISHLIST */}
+            {/* MUST be btn-secondary */}
             <button
-              className="btn btn-add-wishlist"
+              className="btn btn-secondary"
               onClick={() => dispatch(addToWishlist(p))}
             >
               Wishlist
@@ -43,3 +43,4 @@ function ProductList() {
 }
 
 export default ProductList;
+

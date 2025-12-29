@@ -6,7 +6,7 @@ import "./styles/App.css";
 
 function App() {
   return (
-    <div className="container">
+    <>
       <div className="navbar-expand-lg">
         <div className="text-center">
           <h3>Shopping Cart</h3>
@@ -27,7 +27,7 @@ function App() {
         <h3>Wishlist</h3>
         <Wishlist />
       </section>
-    </div>
+    </>
   );
 }
 

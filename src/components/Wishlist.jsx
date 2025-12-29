@@ -15,9 +15,9 @@ function Wishlist() {
             <h4>{p.name}</h4>
             <p>₹{p.price}</p>
 
-            {/* ONLY ONE BUTTON */}
+            {/* SINGLE .btn */}
             <button
-              className="btn btn-remove-wishlist"
+              className="btn"
               onClick={() => dispatch(removeFromWishlist(p.id))}
             >
               Remove
